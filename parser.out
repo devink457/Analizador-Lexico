@@ -1,0 +1,1099 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    MIENTRAS
+    SI
+    SINO
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> lista_sentencias
+Rule 2     programa -> empty
+Rule 3     lista_sentencias -> lista_sentencias sentencia
+Rule 4     lista_sentencias -> sentencia
+Rule 5     sentencia -> ID IGUAL expresion
+Rule 6     sentencia -> ID IGUAL expresion PUNTOYCOMA
+Rule 7     sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER
+Rule 8     sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA
+Rule 9     expresion -> expresion MENOR expresion
+Rule 10    expresion -> expresion MAYOR expresion
+Rule 11    expresion -> expresion MENORIGUAL expresion
+Rule 12    expresion -> expresion MAYORIGUAL expresion
+Rule 13    expresion -> expresion IGUALIGUAL expresion
+Rule 14    expresion -> expresion DIFERENTE expresion
+Rule 15    expresion -> expresion SUMA expresion
+Rule 16    expresion -> expresion RESTA expresion
+Rule 17    expresion -> expresion MULTIPLICACION expresion
+Rule 18    expresion -> expresion DIVISION expresion
+Rule 19    expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER
+Rule 20    expresion -> NUMERO
+Rule 21    expresion -> ID
+Rule 22    expresion -> CADENA
+Rule 23    empty -> <empty>
+
+Terminals, with rules where they appear
+
+CADENA               : 22
+DIFERENTE            : 14
+DIVISION             : 18
+ID                   : 5 6 21
+IGUAL                : 5 6
+IGUALIGUAL           : 13
+IMPRIMIR             : 7 8
+MAYOR                : 10
+MAYORIGUAL           : 12
+MENOR                : 9
+MENORIGUAL           : 11
+MIENTRAS             : 
+MULTIPLICACION       : 17
+NUMERO               : 20
+PARENTESIS_DER       : 7 8 19
+PARENTESIS_IZQ       : 7 8 19
+PUNTOYCOMA           : 6 8
+RESTA                : 16
+SI                   : 
+SINO                 : 
+SUMA                 : 15
+error                : 
+
+Nonterminals, with rules where they appear
+
+empty                : 2
+expresion            : 5 6 7 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19
+lista_sentencias     : 1 3
+programa             : 0
+sentencia            : 3 4
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . programa
+    (1) programa -> . lista_sentencias
+    (2) programa -> . empty
+    (3) lista_sentencias -> . lista_sentencias sentencia
+    (4) lista_sentencias -> . sentencia
+    (23) empty -> .
+    (5) sentencia -> . ID IGUAL expresion
+    (6) sentencia -> . ID IGUAL expresion PUNTOYCOMA
+    (7) sentencia -> . IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER
+    (8) sentencia -> . IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA
+
+    $end            reduce using rule 23 (empty -> .)
+    ID              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+
+    programa                       shift and go to state 1
+    lista_sentencias               shift and go to state 2
+    empty                          shift and go to state 3
+    sentencia                      shift and go to state 4
+
+state 1
+
+    (0) S' -> programa .
+
+
+
+state 2
+
+    (1) programa -> lista_sentencias .
+    (3) lista_sentencias -> lista_sentencias . sentencia
+    (5) sentencia -> . ID IGUAL expresion
+    (6) sentencia -> . ID IGUAL expresion PUNTOYCOMA
+    (7) sentencia -> . IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER
+    (8) sentencia -> . IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA
+
+    $end            reduce using rule 1 (programa -> lista_sentencias .)
+    ID              shift and go to state 5
+    IMPRIMIR        shift and go to state 6
+
+    sentencia                      shift and go to state 7
+
+state 3
+
+    (2) programa -> empty .
+
+    $end            reduce using rule 2 (programa -> empty .)
+
+
+state 4
+
+    (4) lista_sentencias -> sentencia .
+
+    ID              reduce using rule 4 (lista_sentencias -> sentencia .)
+    IMPRIMIR        reduce using rule 4 (lista_sentencias -> sentencia .)
+    $end            reduce using rule 4 (lista_sentencias -> sentencia .)
+
+
+state 5
+
+    (5) sentencia -> ID . IGUAL expresion
+    (6) sentencia -> ID . IGUAL expresion PUNTOYCOMA
+
+    IGUAL           shift and go to state 8
+
+
+state 6
+
+    (7) sentencia -> IMPRIMIR . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (8) sentencia -> IMPRIMIR . PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA
+
+    PARENTESIS_IZQ  shift and go to state 9
+
+
+state 7
+
+    (3) lista_sentencias -> lista_sentencias sentencia .
+
+    ID              reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia .)
+    IMPRIMIR        reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia .)
+    $end            reduce using rule 3 (lista_sentencias -> lista_sentencias sentencia .)
+
+
+state 8
+
+    (5) sentencia -> ID IGUAL . expresion
+    (6) sentencia -> ID IGUAL . expresion PUNTOYCOMA
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 11
+
+state 9
+
+    (7) sentencia -> IMPRIMIR PARENTESIS_IZQ . expresion PARENTESIS_DER
+    (8) sentencia -> IMPRIMIR PARENTESIS_IZQ . expresion PARENTESIS_DER PUNTOYCOMA
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 15
+
+state 10
+
+    (21) expresion -> ID .
+
+    PUNTOYCOMA      reduce using rule 21 (expresion -> ID .)
+    MENOR           reduce using rule 21 (expresion -> ID .)
+    MAYOR           reduce using rule 21 (expresion -> ID .)
+    MENORIGUAL      reduce using rule 21 (expresion -> ID .)
+    MAYORIGUAL      reduce using rule 21 (expresion -> ID .)
+    IGUALIGUAL      reduce using rule 21 (expresion -> ID .)
+    DIFERENTE       reduce using rule 21 (expresion -> ID .)
+    SUMA            reduce using rule 21 (expresion -> ID .)
+    RESTA           reduce using rule 21 (expresion -> ID .)
+    MULTIPLICACION  reduce using rule 21 (expresion -> ID .)
+    DIVISION        reduce using rule 21 (expresion -> ID .)
+    ID              reduce using rule 21 (expresion -> ID .)
+    IMPRIMIR        reduce using rule 21 (expresion -> ID .)
+    $end            reduce using rule 21 (expresion -> ID .)
+    PARENTESIS_DER  reduce using rule 21 (expresion -> ID .)
+
+
+state 11
+
+    (5) sentencia -> ID IGUAL expresion .
+    (6) sentencia -> ID IGUAL expresion . PUNTOYCOMA
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    ID              reduce using rule 5 (sentencia -> ID IGUAL expresion .)
+    IMPRIMIR        reduce using rule 5 (sentencia -> ID IGUAL expresion .)
+    $end            reduce using rule 5 (sentencia -> ID IGUAL expresion .)
+    PUNTOYCOMA      shift and go to state 16
+    MENOR           shift and go to state 17
+    MAYOR           shift and go to state 18
+    MENORIGUAL      shift and go to state 19
+    MAYORIGUAL      shift and go to state 20
+    IGUALIGUAL      shift and go to state 21
+    DIFERENTE       shift and go to state 22
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+
+state 12
+
+    (19) expresion -> PARENTESIS_IZQ . expresion PARENTESIS_DER
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 27
+
+state 13
+
+    (20) expresion -> NUMERO .
+
+    PUNTOYCOMA      reduce using rule 20 (expresion -> NUMERO .)
+    MENOR           reduce using rule 20 (expresion -> NUMERO .)
+    MAYOR           reduce using rule 20 (expresion -> NUMERO .)
+    MENORIGUAL      reduce using rule 20 (expresion -> NUMERO .)
+    MAYORIGUAL      reduce using rule 20 (expresion -> NUMERO .)
+    IGUALIGUAL      reduce using rule 20 (expresion -> NUMERO .)
+    DIFERENTE       reduce using rule 20 (expresion -> NUMERO .)
+    SUMA            reduce using rule 20 (expresion -> NUMERO .)
+    RESTA           reduce using rule 20 (expresion -> NUMERO .)
+    MULTIPLICACION  reduce using rule 20 (expresion -> NUMERO .)
+    DIVISION        reduce using rule 20 (expresion -> NUMERO .)
+    ID              reduce using rule 20 (expresion -> NUMERO .)
+    IMPRIMIR        reduce using rule 20 (expresion -> NUMERO .)
+    $end            reduce using rule 20 (expresion -> NUMERO .)
+    PARENTESIS_DER  reduce using rule 20 (expresion -> NUMERO .)
+
+
+state 14
+
+    (22) expresion -> CADENA .
+
+    PUNTOYCOMA      reduce using rule 22 (expresion -> CADENA .)
+    MENOR           reduce using rule 22 (expresion -> CADENA .)
+    MAYOR           reduce using rule 22 (expresion -> CADENA .)
+    MENORIGUAL      reduce using rule 22 (expresion -> CADENA .)
+    MAYORIGUAL      reduce using rule 22 (expresion -> CADENA .)
+    IGUALIGUAL      reduce using rule 22 (expresion -> CADENA .)
+    DIFERENTE       reduce using rule 22 (expresion -> CADENA .)
+    SUMA            reduce using rule 22 (expresion -> CADENA .)
+    RESTA           reduce using rule 22 (expresion -> CADENA .)
+    MULTIPLICACION  reduce using rule 22 (expresion -> CADENA .)
+    DIVISION        reduce using rule 22 (expresion -> CADENA .)
+    ID              reduce using rule 22 (expresion -> CADENA .)
+    IMPRIMIR        reduce using rule 22 (expresion -> CADENA .)
+    $end            reduce using rule 22 (expresion -> CADENA .)
+    PARENTESIS_DER  reduce using rule 22 (expresion -> CADENA .)
+
+
+state 15
+
+    (7) sentencia -> IMPRIMIR PARENTESIS_IZQ expresion . PARENTESIS_DER
+    (8) sentencia -> IMPRIMIR PARENTESIS_IZQ expresion . PARENTESIS_DER PUNTOYCOMA
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PARENTESIS_DER  shift and go to state 28
+    MENOR           shift and go to state 17
+    MAYOR           shift and go to state 18
+    MENORIGUAL      shift and go to state 19
+    MAYORIGUAL      shift and go to state 20
+    IGUALIGUAL      shift and go to state 21
+    DIFERENTE       shift and go to state 22
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+
+state 16
+
+    (6) sentencia -> ID IGUAL expresion PUNTOYCOMA .
+
+    ID              reduce using rule 6 (sentencia -> ID IGUAL expresion PUNTOYCOMA .)
+    IMPRIMIR        reduce using rule 6 (sentencia -> ID IGUAL expresion PUNTOYCOMA .)
+    $end            reduce using rule 6 (sentencia -> ID IGUAL expresion PUNTOYCOMA .)
+
+
+state 17
+
+    (9) expresion -> expresion MENOR . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 29
+
+state 18
+
+    (10) expresion -> expresion MAYOR . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 30
+
+state 19
+
+    (11) expresion -> expresion MENORIGUAL . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 31
+
+state 20
+
+    (12) expresion -> expresion MAYORIGUAL . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 32
+
+state 21
+
+    (13) expresion -> expresion IGUALIGUAL . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 33
+
+state 22
+
+    (14) expresion -> expresion DIFERENTE . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 34
+
+state 23
+
+    (15) expresion -> expresion SUMA . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 35
+
+state 24
+
+    (16) expresion -> expresion RESTA . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 36
+
+state 25
+
+    (17) expresion -> expresion MULTIPLICACION . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 37
+
+state 26
+
+    (18) expresion -> expresion DIVISION . expresion
+    (9) expresion -> . expresion MENOR expresion
+    (10) expresion -> . expresion MAYOR expresion
+    (11) expresion -> . expresion MENORIGUAL expresion
+    (12) expresion -> . expresion MAYORIGUAL expresion
+    (13) expresion -> . expresion IGUALIGUAL expresion
+    (14) expresion -> . expresion DIFERENTE expresion
+    (15) expresion -> . expresion SUMA expresion
+    (16) expresion -> . expresion RESTA expresion
+    (17) expresion -> . expresion MULTIPLICACION expresion
+    (18) expresion -> . expresion DIVISION expresion
+    (19) expresion -> . PARENTESIS_IZQ expresion PARENTESIS_DER
+    (20) expresion -> . NUMERO
+    (21) expresion -> . ID
+    (22) expresion -> . CADENA
+
+    PARENTESIS_IZQ  shift and go to state 12
+    NUMERO          shift and go to state 13
+    ID              shift and go to state 10
+    CADENA          shift and go to state 14
+
+    expresion                      shift and go to state 38
+
+state 27
+
+    (19) expresion -> PARENTESIS_IZQ expresion . PARENTESIS_DER
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PARENTESIS_DER  shift and go to state 39
+    MENOR           shift and go to state 17
+    MAYOR           shift and go to state 18
+    MENORIGUAL      shift and go to state 19
+    MAYORIGUAL      shift and go to state 20
+    IGUALIGUAL      shift and go to state 21
+    DIFERENTE       shift and go to state 22
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+
+state 28
+
+    (7) sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER .
+    (8) sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER . PUNTOYCOMA
+
+    ID              reduce using rule 7 (sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    IMPRIMIR        reduce using rule 7 (sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    $end            reduce using rule 7 (sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PUNTOYCOMA      shift and go to state 40
+
+
+state 29
+
+    (9) expresion -> expresion MENOR expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    MENOR           reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    MAYOR           reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    MENORIGUAL      reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    MAYORIGUAL      reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    IGUALIGUAL      reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    DIFERENTE       reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    ID              reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    IMPRIMIR        reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    $end            reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    PARENTESIS_DER  reduce using rule 9 (expresion -> expresion MENOR expresion .)
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! SUMA            [ reduce using rule 9 (expresion -> expresion MENOR expresion .) ]
+  ! RESTA           [ reduce using rule 9 (expresion -> expresion MENOR expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 9 (expresion -> expresion MENOR expresion .) ]
+  ! DIVISION        [ reduce using rule 9 (expresion -> expresion MENOR expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+
+
+state 30
+
+    (10) expresion -> expresion MAYOR expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    MENOR           reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    MAYOR           reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    MENORIGUAL      reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    MAYORIGUAL      reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    IGUALIGUAL      reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    DIFERENTE       reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    ID              reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    IMPRIMIR        reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    $end            reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    PARENTESIS_DER  reduce using rule 10 (expresion -> expresion MAYOR expresion .)
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! SUMA            [ reduce using rule 10 (expresion -> expresion MAYOR expresion .) ]
+  ! RESTA           [ reduce using rule 10 (expresion -> expresion MAYOR expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 10 (expresion -> expresion MAYOR expresion .) ]
+  ! DIVISION        [ reduce using rule 10 (expresion -> expresion MAYOR expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+
+
+state 31
+
+    (11) expresion -> expresion MENORIGUAL expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    MENOR           reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    MAYOR           reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    MENORIGUAL      reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    MAYORIGUAL      reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    IGUALIGUAL      reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    DIFERENTE       reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    ID              reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    IMPRIMIR        reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    $end            reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    PARENTESIS_DER  reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .)
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! SUMA            [ reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! DIVISION        [ reduce using rule 11 (expresion -> expresion MENORIGUAL expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+
+
+state 32
+
+    (12) expresion -> expresion MAYORIGUAL expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    MENOR           reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    MAYOR           reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    MENORIGUAL      reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    MAYORIGUAL      reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    IGUALIGUAL      reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    DIFERENTE       reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    ID              reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    IMPRIMIR        reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    $end            reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    PARENTESIS_DER  reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .)
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! SUMA            [ reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! DIVISION        [ reduce using rule 12 (expresion -> expresion MAYORIGUAL expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+
+
+state 33
+
+    (13) expresion -> expresion IGUALIGUAL expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    MENOR           reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    MAYOR           reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    MENORIGUAL      reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    MAYORIGUAL      reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    IGUALIGUAL      reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    DIFERENTE       reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    ID              reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    IMPRIMIR        reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    $end            reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    PARENTESIS_DER  reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .)
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! SUMA            [ reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .) ]
+  ! RESTA           [ reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .) ]
+  ! DIVISION        [ reduce using rule 13 (expresion -> expresion IGUALIGUAL expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+
+
+state 34
+
+    (14) expresion -> expresion DIFERENTE expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    MENOR           reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    MAYOR           reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    MENORIGUAL      reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    MAYORIGUAL      reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    IGUALIGUAL      reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    DIFERENTE       reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    ID              reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    IMPRIMIR        reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    $end            reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    PARENTESIS_DER  reduce using rule 14 (expresion -> expresion DIFERENTE expresion .)
+    SUMA            shift and go to state 23
+    RESTA           shift and go to state 24
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! SUMA            [ reduce using rule 14 (expresion -> expresion DIFERENTE expresion .) ]
+  ! RESTA           [ reduce using rule 14 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MULTIPLICACION  [ reduce using rule 14 (expresion -> expresion DIFERENTE expresion .) ]
+  ! DIVISION        [ reduce using rule 14 (expresion -> expresion DIFERENTE expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+
+
+state 35
+
+    (15) expresion -> expresion SUMA expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    MENOR           reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    MAYOR           reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    MENORIGUAL      reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    MAYORIGUAL      reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    IGUALIGUAL      reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    DIFERENTE       reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    SUMA            reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    RESTA           reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    ID              reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    IMPRIMIR        reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    $end            reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    PARENTESIS_DER  reduce using rule 15 (expresion -> expresion SUMA expresion .)
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! MULTIPLICACION  [ reduce using rule 15 (expresion -> expresion SUMA expresion .) ]
+  ! DIVISION        [ reduce using rule 15 (expresion -> expresion SUMA expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+  ! SUMA            [ shift and go to state 23 ]
+  ! RESTA           [ shift and go to state 24 ]
+
+
+state 36
+
+    (16) expresion -> expresion RESTA expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    MENOR           reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    MAYOR           reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    MENORIGUAL      reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    MAYORIGUAL      reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    IGUALIGUAL      reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    DIFERENTE       reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    SUMA            reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    RESTA           reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    ID              reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    IMPRIMIR        reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    $end            reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    PARENTESIS_DER  reduce using rule 16 (expresion -> expresion RESTA expresion .)
+    MULTIPLICACION  shift and go to state 25
+    DIVISION        shift and go to state 26
+
+  ! MULTIPLICACION  [ reduce using rule 16 (expresion -> expresion RESTA expresion .) ]
+  ! DIVISION        [ reduce using rule 16 (expresion -> expresion RESTA expresion .) ]
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+  ! SUMA            [ shift and go to state 23 ]
+  ! RESTA           [ shift and go to state 24 ]
+
+
+state 37
+
+    (17) expresion -> expresion MULTIPLICACION expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    MENOR           reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    MAYOR           reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    MENORIGUAL      reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    MAYORIGUAL      reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    IGUALIGUAL      reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    DIFERENTE       reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    SUMA            reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    RESTA           reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    MULTIPLICACION  reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    DIVISION        reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    ID              reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    IMPRIMIR        reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    $end            reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+    PARENTESIS_DER  reduce using rule 17 (expresion -> expresion MULTIPLICACION expresion .)
+
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+  ! SUMA            [ shift and go to state 23 ]
+  ! RESTA           [ shift and go to state 24 ]
+  ! MULTIPLICACION  [ shift and go to state 25 ]
+  ! DIVISION        [ shift and go to state 26 ]
+
+
+state 38
+
+    (18) expresion -> expresion DIVISION expresion .
+    (9) expresion -> expresion . MENOR expresion
+    (10) expresion -> expresion . MAYOR expresion
+    (11) expresion -> expresion . MENORIGUAL expresion
+    (12) expresion -> expresion . MAYORIGUAL expresion
+    (13) expresion -> expresion . IGUALIGUAL expresion
+    (14) expresion -> expresion . DIFERENTE expresion
+    (15) expresion -> expresion . SUMA expresion
+    (16) expresion -> expresion . RESTA expresion
+    (17) expresion -> expresion . MULTIPLICACION expresion
+    (18) expresion -> expresion . DIVISION expresion
+
+    PUNTOYCOMA      reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    MENOR           reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    MAYOR           reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    MENORIGUAL      reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    MAYORIGUAL      reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    IGUALIGUAL      reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    DIFERENTE       reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    SUMA            reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    RESTA           reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    MULTIPLICACION  reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    DIVISION        reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    ID              reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    IMPRIMIR        reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    $end            reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+    PARENTESIS_DER  reduce using rule 18 (expresion -> expresion DIVISION expresion .)
+
+  ! MENOR           [ shift and go to state 17 ]
+  ! MAYOR           [ shift and go to state 18 ]
+  ! MENORIGUAL      [ shift and go to state 19 ]
+  ! MAYORIGUAL      [ shift and go to state 20 ]
+  ! IGUALIGUAL      [ shift and go to state 21 ]
+  ! DIFERENTE       [ shift and go to state 22 ]
+  ! SUMA            [ shift and go to state 23 ]
+  ! RESTA           [ shift and go to state 24 ]
+  ! MULTIPLICACION  [ shift and go to state 25 ]
+  ! DIVISION        [ shift and go to state 26 ]
+
+
+state 39
+
+    (19) expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .
+
+    PUNTOYCOMA      reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MENOR           reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MAYOR           reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MENORIGUAL      reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MAYORIGUAL      reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    IGUALIGUAL      reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    DIFERENTE       reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    SUMA            reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    RESTA           reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    MULTIPLICACION  reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    DIVISION        reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    ID              reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    IMPRIMIR        reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    $end            reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+    PARENTESIS_DER  reduce using rule 19 (expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER .)
+
+
+state 40
+
+    (8) sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA .
+
+    ID              reduce using rule 8 (sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA .)
+    IMPRIMIR        reduce using rule 8 (sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA .)
+    $end            reduce using rule 8 (sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA .)
+
