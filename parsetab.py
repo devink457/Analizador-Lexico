@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftMENORMAYORMENORIGUALMAYORIGUALIGUALIGUALDIFERENTEleftSUMARESTAleftMULTIPLICACIONDIVISIONCADENA DIFERENTE DIVISION ID IGUAL IGUALIGUAL IMPRIMIR MAYOR MAYORIGUAL MENOR MENORIGUAL MIENTRAS MULTIPLICACION NUMERO PARENTESIS_DER PARENTESIS_IZQ PUNTOYCOMA RESTA SI SINO SUMAprograma : lista_sentencias\n                | emptylista_sentencias : lista_sentencias sentencia\n                        | sentenciasentencia : ID IGUAL expresion\n                 | ID IGUAL expresion PUNTOYCOMAsentencia : IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER\n                 | IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMAexpresion : expresion MENOR expresion\n                 | expresion MAYOR expresion\n                 | expresion MENORIGUAL expresion\n                 | expresion MAYORIGUAL expresion\n                 | expresion IGUALIGUAL expresion\n                 | expresion DIFERENTE expresionexpresion : expresion SUMA expresion\n                 | expresion RESTA expresion\n                 | expresion MULTIPLICACION expresion\n                 | expresion DIVISION expresionexpresion : PARENTESIS_IZQ expresion PARENTESIS_DERexpresion : NUMEROexpresion : IDexpresion : CADENAempty :'
+_lr_signature = 'leftMENORMAYORMENORIGUALMAYORIGUALIGUALIGUALDIFERENTEleftSUMARESTAleftMULTIPLICACIONDIVISIONCADENA DIFERENTE DIVISION ID IGUAL IGUALIGUAL IMPRIMIR MAYOR MAYORIGUAL MENOR MENORIGUAL MIENTRAS MULTIPLICACION NUMERO PARENTESIS_DER PARENTESIS_IZQ PUNTOYCOMA RESTA SI SINO SUMAprograma : lista_sentencias\n                | emptylista_sentencias : lista_sentencias sentencia\n                        | sentenciasentencia : ID IGUAL expresion\n                 | ID IGUAL expresion PUNTOYCOMAsentencia : IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER\n                 | IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMAexpresion : expresion MENOR expresion\n                 | expresion MAYOR expresion\n                 | expresion MENORIGUAL expresion\n                 | expresion MAYORIGUAL expresion\n                 | expresion IGUALIGUAL expresion\n                 | expresion DIFERENTE expresionexpresion : expresion SUMA expresion\n                 | expresion RESTA expresion\n                 | expresion MULTIPLICACION expresion\n                 | expresion DIVISION expresionexpresion : PARENTESIS_IZQ expresion PARENTESIS_DERexpresion : NUMEROexpresion : IDexpresion : CADENAempty :sentencia : IMPRIMIR PARENTESIS_IZQ error PARENTESIS_DERsentencia : SI expresion sentencia\n                 | SI expresion sentencia SINO sentencia'
     
-_lr_action_items = {'$end':([0,1,2,3,4,7,10,11,13,14,16,28,29,30,31,32,33,34,35,36,37,38,39,40,],[-23,0,-1,-2,-4,-3,-21,-5,-20,-22,-6,-7,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,]),'ID':([0,2,4,7,8,9,10,11,12,13,14,16,17,18,19,20,21,22,23,24,25,26,28,29,30,31,32,33,34,35,36,37,38,39,40,],[5,5,-4,-3,10,10,-21,-5,10,-20,-22,-6,10,10,10,10,10,10,10,10,10,10,-7,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,]),'IMPRIMIR':([0,2,4,7,10,11,13,14,16,28,29,30,31,32,33,34,35,36,37,38,39,40,],[6,6,-4,-3,-21,-5,-20,-22,-6,-7,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,]),'IGUAL':([5,],[8,]),'PARENTESIS_IZQ':([6,8,9,12,17,18,19,20,21,22,23,24,25,26,],[9,12,12,12,12,12,12,12,12,12,12,12,12,12,]),'NUMERO':([8,9,12,17,18,19,20,21,22,23,24,25,26,],[13,13,13,13,13,13,13,13,13,13,13,13,13,]),'CADENA':([8,9,12,17,18,19,20,21,22,23,24,25,26,],[14,14,14,14,14,14,14,14,14,14,14,14,14,]),'PUNTOYCOMA':([10,11,13,14,28,29,30,31,32,33,34,35,36,37,38,39,],[-21,16,-20,-22,40,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'MENOR':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,17,-20,-22,17,17,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'MAYOR':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,18,-20,-22,18,18,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'MENORIGUAL':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,19,-20,-22,19,19,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'MAYORIGUAL':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,20,-20,-22,20,20,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'IGUALIGUAL':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,21,-20,-22,21,21,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'DIFERENTE':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,22,-20,-22,22,22,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'SUMA':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,23,-20,-22,23,23,23,23,23,23,23,23,-15,-16,-17,-18,-19,]),'RESTA':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,24,-20,-22,24,24,24,24,24,24,24,24,-15,-16,-17,-18,-19,]),'MULTIPLICACION':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,25,-20,-22,25,25,25,25,25,25,25,25,25,25,-17,-18,-19,]),'DIVISION':([10,11,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,26,-20,-22,26,26,26,26,26,26,26,26,26,26,-17,-18,-19,]),'PARENTESIS_DER':([10,13,14,15,27,29,30,31,32,33,34,35,36,37,38,39,],[-21,-20,-22,28,39,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),}
+_lr_action_items = {'$end':([0,1,2,3,4,8,13,14,15,16,19,31,32,33,35,36,37,38,39,40,41,42,43,44,45,46,47,],[-23,0,-1,-2,-4,-3,-20,-21,-22,-5,-25,-6,-7,-24,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,-26,]),'ID':([0,2,4,7,8,9,10,11,12,13,14,15,16,19,20,21,22,23,24,25,26,27,28,29,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[5,5,-4,14,-3,14,14,5,14,-20,-21,-22,-5,-25,14,14,14,14,14,14,14,14,14,14,-6,-7,-24,5,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,-26,]),'IMPRIMIR':([0,2,4,8,11,13,14,15,16,19,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[6,6,-4,-3,6,-20,-21,-22,-5,-25,-6,-7,-24,6,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,-26,]),'SI':([0,2,4,8,11,13,14,15,16,19,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,],[7,7,-4,-3,7,-20,-21,-22,-5,-25,-6,-7,-24,7,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,-26,]),'IGUAL':([5,],[9,]),'PARENTESIS_IZQ':([6,7,9,10,12,20,21,22,23,24,25,26,27,28,29,],[10,12,12,12,12,12,12,12,12,12,12,12,12,12,12,]),'NUMERO':([7,9,10,12,20,21,22,23,24,25,26,27,28,29,],[13,13,13,13,13,13,13,13,13,13,13,13,13,13,]),'CADENA':([7,9,10,12,20,21,22,23,24,25,26,27,28,29,],[15,15,15,15,15,15,15,15,15,15,15,15,15,15,]),'error':([10,],[18,]),'MENOR':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[20,-20,-21,-22,20,20,20,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'MAYOR':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[21,-20,-21,-22,21,21,21,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'MENORIGUAL':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[22,-20,-21,-22,22,22,22,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'MAYORIGUAL':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[23,-20,-21,-22,23,23,23,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'IGUALIGUAL':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[24,-20,-21,-22,24,24,24,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'DIFERENTE':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[25,-20,-21,-22,25,25,25,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'SUMA':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[26,-20,-21,-22,26,26,26,26,26,26,26,26,26,-15,-16,-17,-18,-19,]),'RESTA':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[27,-20,-21,-22,27,27,27,27,27,27,27,27,27,-15,-16,-17,-18,-19,]),'MULTIPLICACION':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[28,-20,-21,-22,28,28,28,28,28,28,28,28,28,28,28,-17,-18,-19,]),'DIVISION':([11,13,14,15,16,17,30,35,36,37,38,39,40,41,42,43,44,45,],[29,-20,-21,-22,29,29,29,29,29,29,29,29,29,29,29,-17,-18,-19,]),'PUNTOYCOMA':([13,14,15,16,32,35,36,37,38,39,40,41,42,43,44,45,],[-20,-21,-22,31,46,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),'SINO':([13,14,15,16,19,31,32,33,35,36,37,38,39,40,41,42,43,44,45,46,47,],[-20,-21,-22,-5,34,-6,-7,-24,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-8,-26,]),'PARENTESIS_DER':([13,14,15,17,18,30,35,36,37,38,39,40,41,42,43,44,45,],[-20,-21,-22,32,33,45,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'lista_sentencias':([0,],[2,]),'empty':([0,],[3,]),'sentencia':([0,2,],[4,7,]),'expresion':([8,9,12,17,18,19,20,21,22,23,24,25,26,],[11,15,27,29,30,31,32,33,34,35,36,37,38,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'lista_sentencias':([0,],[2,]),'empty':([0,],[3,]),'sentencia':([0,2,11,34,],[4,8,19,47,]),'expresion':([7,9,10,12,20,21,22,23,24,25,26,27,28,29,],[11,16,17,30,35,36,37,38,39,40,41,42,43,44,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,27 +27,30 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
-  ('programa -> lista_sentencias','programa',1,'p_programa','parser.py',11),
-  ('programa -> empty','programa',1,'p_programa','parser.py',12),
-  ('lista_sentencias -> lista_sentencias sentencia','lista_sentencias',2,'p_lista_sentencias','parser.py',16),
-  ('lista_sentencias -> sentencia','lista_sentencias',1,'p_lista_sentencias','parser.py',17),
-  ('sentencia -> ID IGUAL expresion','sentencia',3,'p_sentencia_asignacion','parser.py',24),
-  ('sentencia -> ID IGUAL expresion PUNTOYCOMA','sentencia',4,'p_sentencia_asignacion','parser.py',25),
-  ('sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER','sentencia',4,'p_sentencia_imprimir','parser.py',29),
-  ('sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA','sentencia',5,'p_sentencia_imprimir','parser.py',30),
-  ('expresion -> expresion MENOR expresion','expresion',3,'p_expresion_relacional','parser.py',34),
-  ('expresion -> expresion MAYOR expresion','expresion',3,'p_expresion_relacional','parser.py',35),
-  ('expresion -> expresion MENORIGUAL expresion','expresion',3,'p_expresion_relacional','parser.py',36),
-  ('expresion -> expresion MAYORIGUAL expresion','expresion',3,'p_expresion_relacional','parser.py',37),
-  ('expresion -> expresion IGUALIGUAL expresion','expresion',3,'p_expresion_relacional','parser.py',38),
-  ('expresion -> expresion DIFERENTE expresion','expresion',3,'p_expresion_relacional','parser.py',39),
-  ('expresion -> expresion SUMA expresion','expresion',3,'p_expresion_binaria','parser.py',43),
-  ('expresion -> expresion RESTA expresion','expresion',3,'p_expresion_binaria','parser.py',44),
-  ('expresion -> expresion MULTIPLICACION expresion','expresion',3,'p_expresion_binaria','parser.py',45),
-  ('expresion -> expresion DIVISION expresion','expresion',3,'p_expresion_binaria','parser.py',46),
-  ('expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER','expresion',3,'p_expresion_grupo','parser.py',50),
-  ('expresion -> NUMERO','expresion',1,'p_expresion_numero','parser.py',54),
-  ('expresion -> ID','expresion',1,'p_expresion_id','parser.py',58),
-  ('expresion -> CADENA','expresion',1,'p_expresion_cadena','parser.py',62),
-  ('empty -> <empty>','empty',0,'p_empty','parser.py',66),
+  ('programa -> lista_sentencias','programa',1,'p_programa','parser.py',13),
+  ('programa -> empty','programa',1,'p_programa','parser.py',14),
+  ('lista_sentencias -> lista_sentencias sentencia','lista_sentencias',2,'p_lista_sentencias','parser.py',18),
+  ('lista_sentencias -> sentencia','lista_sentencias',1,'p_lista_sentencias','parser.py',19),
+  ('sentencia -> ID IGUAL expresion','sentencia',3,'p_sentencia_asignacion','parser.py',26),
+  ('sentencia -> ID IGUAL expresion PUNTOYCOMA','sentencia',4,'p_sentencia_asignacion','parser.py',27),
+  ('sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER','sentencia',4,'p_sentencia_imprimir','parser.py',31),
+  ('sentencia -> IMPRIMIR PARENTESIS_IZQ expresion PARENTESIS_DER PUNTOYCOMA','sentencia',5,'p_sentencia_imprimir','parser.py',32),
+  ('expresion -> expresion MENOR expresion','expresion',3,'p_expresion_relacional','parser.py',36),
+  ('expresion -> expresion MAYOR expresion','expresion',3,'p_expresion_relacional','parser.py',37),
+  ('expresion -> expresion MENORIGUAL expresion','expresion',3,'p_expresion_relacional','parser.py',38),
+  ('expresion -> expresion MAYORIGUAL expresion','expresion',3,'p_expresion_relacional','parser.py',39),
+  ('expresion -> expresion IGUALIGUAL expresion','expresion',3,'p_expresion_relacional','parser.py',40),
+  ('expresion -> expresion DIFERENTE expresion','expresion',3,'p_expresion_relacional','parser.py',41),
+  ('expresion -> expresion SUMA expresion','expresion',3,'p_expresion_binaria','parser.py',45),
+  ('expresion -> expresion RESTA expresion','expresion',3,'p_expresion_binaria','parser.py',46),
+  ('expresion -> expresion MULTIPLICACION expresion','expresion',3,'p_expresion_binaria','parser.py',47),
+  ('expresion -> expresion DIVISION expresion','expresion',3,'p_expresion_binaria','parser.py',48),
+  ('expresion -> PARENTESIS_IZQ expresion PARENTESIS_DER','expresion',3,'p_expresion_grupo','parser.py',52),
+  ('expresion -> NUMERO','expresion',1,'p_expresion_numero','parser.py',56),
+  ('expresion -> ID','expresion',1,'p_expresion_id','parser.py',60),
+  ('expresion -> CADENA','expresion',1,'p_expresion_cadena','parser.py',64),
+  ('empty -> <empty>','empty',0,'p_empty','parser.py',68),
+  ('sentencia -> IMPRIMIR PARENTESIS_IZQ error PARENTESIS_DER','sentencia',4,'p_sentencia_imprimir_error','parser.py',93),
+  ('sentencia -> SI expresion sentencia','sentencia',3,'p_sentencia_if','parser.py',97),
+  ('sentencia -> SI expresion sentencia SINO sentencia','sentencia',5,'p_sentencia_if','parser.py',98),
 ]

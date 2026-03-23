@@ -129,8 +129,11 @@ def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
 
+errores_lexicos = []
+
 def t_error(t):
-    print(f"Carácter ilegal: {t.value[0]}")
+    mensaje = f"Error léxico: '{t.value[0]}' en línea {t.lineno}"
+    errores_lexicos.append(mensaje)
     t.lexer.skip(1)
 
 lexer = lex.lex()
