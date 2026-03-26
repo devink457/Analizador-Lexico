@@ -3,6 +3,7 @@ from lexer import lexer
 from parser import parser
 from symbol_table import symbol_table, clear_table
 from tkinter import messagebox
+from semantic import analizar_semantico
 
 COLOR_FONDO = "#4A9782"
 COLOR_BOTON = "#004030"
@@ -79,8 +80,14 @@ def analizar_sintactico():
         mensaje = "\n".join(errores)
         messagebox.showerror("Errores Sintácticos", mensaje)
     else:
-        salida.insert(tk.END, "Análisis correcto\n")
-        dibujar_arbol(resultado)
+        errores_sem = analizar_semantico(resultado)
+
+        if errores_sem:
+            mensaje = "\n".join(errores_sem)
+            messagebox.showerror("Errores Semánticos", mensaje)
+        else:
+            salida.insert(tk.END, "Análisis correcto (Sintáctico y Semántico)\n")
+            dibujar_arbol(resultado)
 
 def mostrar_tabla():
     salida.delete("1.0", tk.END)
