@@ -4,6 +4,7 @@ from parser import parser
 from symbol_table import symbol_table, clear_table
 from tkinter import messagebox
 from semantic import analizar_semantico
+from ThDirection import generar_tac, convertir_a_ssa, limpiar_estructuras, tac, ssa
 
 COLOR_FONDO = "#4A9782"
 COLOR_BOTON = "#004030"
@@ -148,6 +149,7 @@ def iniciar_gui():
     btn_sintactico = tk.Button(frame_botones, text="Sintáctico", command=analizar_sintactico)
     btn_tabla = tk.Button(frame_botones, text="Tabla", command=mostrar_tabla)
     btn_salir = tk.Button(frame_botones, text="Salir", command=ventana.quit, bg="#D32F2F")
+    btn_ssa = tk.Button(frame_botones, text="SSA", command=generar_ssa)
     for btn in [btn_lexico, btn_sintactico, btn_tabla]:
         btn.bind("<Enter>", on_enter)
         btn.bind("<Leave>", on_leave)
@@ -161,7 +163,7 @@ def iniciar_gui():
     btn_salir.bind("<Enter>", on_enter_red)
     btn_salir.bind("<Leave>", on_leave_red)
 
-    for i, btn in enumerate([btn_lexico, btn_sintactico, btn_tabla, btn_salir]):
+for i, btn in enumerate([btn_lexico, btn_sintactico, btn_tabla, btn_ssa, btn_salir]):
         estilo_boton(btn)
         btn.grid(row=0, column=i, padx=10)
 
@@ -188,6 +190,44 @@ def on_enter(e):
 
 def on_leave(e):
     e.widget['bg'] = '#007ACC'
+
+def generar_ssa():
+    global salida, editor
+
+    salida.delete("1.0", tk.END)
+    limpiar_estructuras()
+
+    codigo = editor.get("1.0", tk.END).strip()
+    codigo = editor.get("1.0", tk.END).strip()
+
+    from parser import errores
+    errores.clear()
+
+    arbol = parser.parse(codigo, lexer=lexer)
+
+    if errores:
+        salida.insert(tk.END, "\n".join(errores))
+        return
+
+    errores_sem = analizar_semantico(arbol)
+
+    if errores_sem:
+        salida.insert(tk.END, "\n".join(errores_sem))
+        return
+
+    generar_tac(arbol)
+    convertir_a_ssa()
+
+    salida.insert(tk.END, "-----TAC-----\n")
+    for i in tac:
+        salida.insert(tk.END, str(i) + "\n")
+
+    salida.insert(tk.END, "\n-----SSA-----\n")
+    for i in ssa:
+        salida.insert(tk.END, str(i) + "\n")
+
+
+
     
 
 
