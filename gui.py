@@ -5,6 +5,7 @@ from symbol_table import symbol_table, clear_table
 from tkinter import messagebox
 from semantic import analizar_semantico
 from ThDirection import generar_tac, convertir_a_ssa, limpiar_estructuras, tac, ssa
+from semantic import analizar_semantico
 
 COLOR_FONDO = "#4A9782"
 COLOR_BOTON = "#004030"
@@ -95,6 +96,30 @@ def mostrar_tabla():
     for simbolo, info in symbol_table.items():
         salida.insert(tk.END, f"{simbolo} -> {info}\n")
 
+def analizar_semantico_gui():
+    salida.delete("1.0", tk.END)
+
+    codigo = editor.get("1.0", tk.END).strip()
+
+    from parser import errores
+    errores.clear()
+
+    arbol = parser.parse(codigo, lexer=lexer)
+
+    if errores:
+        salida.insert(tk.END, "\n".join(errores))
+        return
+
+    errores_sem = analizar_semantico(arbol)
+
+    if errores_sem:
+        salida.insert(tk.END, "Errores Semánticos:\n")
+        for e in errores_sem:
+            salida.insert(tk.END, e + "\n")
+    else:
+        salida.insert(tk.END, "Análisis semántico correcto\n")
+
+
 def iniciar_gui():
     global editor, salida
 
@@ -150,7 +175,8 @@ def iniciar_gui():
     btn_tabla = tk.Button(frame_botones, text="Tabla", command=mostrar_tabla)
     btn_salir = tk.Button(frame_botones, text="Salir", command=ventana.quit, bg="#D32F2F")
     btn_ssa = tk.Button(frame_botones, text="SSA", command=generar_ssa)
-    for btn in [btn_lexico, btn_sintactico, btn_tabla]:
+    btn_semantico = tk.Button(frame_botones, text="Semántico", command=analizar_semantico_gui)
+    for btn in [btn_lexico, btn_sintactico, btn_tabla, btn_semantico, btn_ssa]:
         btn.bind("<Enter>", on_enter)
         btn.bind("<Leave>", on_leave)
         
@@ -163,13 +189,13 @@ def iniciar_gui():
     btn_salir.bind("<Enter>", on_enter_red)
     btn_salir.bind("<Leave>", on_leave_red)
 
-for i, btn in enumerate([btn_lexico, btn_sintactico, btn_tabla, btn_ssa, btn_salir]):
+    for i, btn in enumerate([btn_lexico, btn_sintactico, btn_tabla, btn_semantico, btn_ssa, btn_salir]):
         estilo_boton(btn)
         btn.grid(row=0, column=i, padx=10)
 
-    # ======== SALIDA ========
+        # ======== SALIDA ========
     tk.Label(ventana, text="Salida",
-             bg="#1E1E1E", fg="#00FF9C", font=("Consolas", 12, "bold")).pack()
+    bg="#1E1E1E", fg="#00FF9C", font=("Consolas", 12, "bold")).pack()
 
     salida = tk.Text(
         ventana,
