@@ -4,12 +4,14 @@ ssa = []
 
 temp_count = 0
 versiones = {}
+tac_optimizado = []
 
 #Limpiador
 def limpiar_estructuras():
-    global tac, ssa, temp_count, versiones
+    global tac, ssa, tac_optimizado, temp_count, versiones
     tac.clear()
     ssa.clear()
+    tac_optimizado.clear()
     temp_count = 0
     versiones.clear()
 
@@ -140,3 +142,210 @@ def convertir_a_ssa():
             ssa.append((nueva, "=", izq, op, der))
 
     return ssa
+
+# OPTIMIZACIONES
+
+def optimizar_tac():
+    global tac, tac_optimizado
+
+    codigo = tac.copy()
+
+    codigo = constant_folding(codigo)
+    codigo = constant_propagation(codigo)
+    codigo = dead_code_elimination(codigo)
+    codigo = strength_reduction(codigo)
+
+    # IMPORTANTE:
+    # modificar la lista existente
+    tac_optimizado.clear()
+    tac_optimizado.extend(codigo)
+
+    return tac_optimizado
+
+# CONSTANT FOLDING
+
+def constant_folding(codigo):
+    optimizado = []
+
+    for instr in codigo:
+
+        # operaciones: (t1, '=', 2, '+', 3)
+        if len(instr) == 5:
+            var, eq, izq, op, der = instr
+
+            if isinstance(izq, int) and isinstance(der, int):
+
+                resultado = None
+
+                if op == '+':
+                    resultado = izq + der
+
+                elif op == '-':
+                    resultado = izq - der
+
+                elif op == '*':
+                    resultado = izq * der
+
+                elif op == '/':
+                    if der != 0:
+                        resultado = izq // der
+
+                elif op == '<':
+                    resultado = int(izq < der)
+
+                elif op == '>':
+                    resultado = int(izq > der)
+
+                elif op == '<=':
+                    resultado = int(izq <= der)
+
+                elif op == '>=':
+                    resultado = int(izq >= der)
+
+                elif op == '==':
+                    resultado = int(izq == der)
+
+                elif op == '!=':
+                    resultado = int(izq != der)
+
+                if resultado is not None:
+                    optimizado.append((var, '=', resultado))
+                    continue
+
+        optimizado.append(instr)
+
+    return optimizado
+
+# CONSTANT PROPAGATION
+
+def constant_propagation(codigo):
+
+    constantes = {}
+    optimizado = []
+
+    for instr in codigo:
+
+        # asignacion simple
+        if len(instr) == 3:
+
+            var, eq, val = instr
+
+            if isinstance(val, str) and val in constantes:
+                val = constantes[val]
+
+            if isinstance(val, int):
+                constantes[var] = val
+            else:
+                if var in constantes:
+                    del constantes[var]
+
+            optimizado.append((var, eq, val))
+
+        # operaciones
+        elif len(instr) == 5:
+
+            var, eq, izq, op, der = instr
+
+            if isinstance(izq, str) and izq in constantes:
+                izq = constantes[izq]
+
+            if isinstance(der, str) and der in constantes:
+                der = constantes[der]
+
+            optimizado.append((var, eq, izq, op, der))
+
+        else:
+            optimizado.append(instr)
+
+    return optimizado
+
+
+# CODIGUIÑO MUERTO
+
+def dead_code_elimination(codigo):
+
+    usadas = set()
+
+    for instr in reversed(codigo):
+
+        # PRINT
+        if instr[0] == "PRINT":
+
+            val = instr[1]
+
+            if isinstance(val, str):
+                usadas.add(val)
+
+        # IF
+        elif instr[0] == "IF":
+
+            cond = instr[1]
+
+            if isinstance(cond, str):
+                usadas.add(cond)
+
+        # OPERACIONES
+        elif len(instr) == 5:
+
+            var, _, izq, _, der = instr
+
+            if var in usadas:
+
+                if isinstance(izq, str):
+                    usadas.add(izq)
+
+                if isinstance(der, str):
+                    usadas.add(der)
+
+        # ASIGNACIONES
+        elif len(instr) == 3:
+
+            var, _, val = instr
+
+            if var in usadas:
+
+                if isinstance(val, str):
+                    usadas.add(val)
+
+    optimizado = []
+
+    for instr in codigo:
+
+        # operaciones
+        if len(instr) == 5:
+
+            var = instr[0]
+
+            if var.startswith("t") and var not in usadas:
+                continue
+
+        optimizado.append(instr)
+
+    return optimizado
+
+
+#  REDUCCION
+
+def strength_reduction(codigo):
+
+    optimizado = []
+
+    for instr in codigo:
+
+        if len(instr) == 5:
+
+            var, eq, izq, op, der = instr
+
+            # x * 2  -> x << 1
+            if op == '*' and der == 2:
+                optimizado.append((var, eq, izq, '<<', 1))
+                continue
+
+            # 2 * x -> x << 1
+            if op == '*' and izq == 2:
+                optimizado.append((var, eq, der, '<<', 1))
+                continue
+
+        optimizado.append(instr)
+
+    return optimizado

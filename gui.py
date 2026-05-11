@@ -4,7 +4,15 @@ from parser import parser
 from symbol_table import symbol_table, clear_table
 from tkinter import messagebox
 from semantic import analizar_semantico
-from ThDirection import generar_tac, convertir_a_ssa, limpiar_estructuras, tac, ssa
+from ThDirection import (
+    generar_tac,
+    convertir_a_ssa,
+    limpiar_estructuras,
+    optimizar_tac,
+    tac,
+    tac_optimizado,
+    ssa
+)
 from semantic import analizar_semantico
 
 COLOR_FONDO = "#4A9782"
@@ -154,7 +162,7 @@ def iniciar_gui():
     editor.config(yscrollcommand=scroll_editor.set)
     scroll_editor.config(command=editor.yview)
 
-    # ======== BOTONES ========
+    # BOTONES 
     frame_botones = tk.Frame(ventana, bg="#1E1E1E")
     frame_botones.pack(pady=10)
 
@@ -174,7 +182,7 @@ def iniciar_gui():
     btn_sintactico = tk.Button(frame_botones, text="Sintáctico", command=analizar_sintactico)
     btn_tabla = tk.Button(frame_botones, text="Tabla", command=mostrar_tabla)
     btn_salir = tk.Button(frame_botones, text="Salir", command=ventana.quit, bg="#D32F2F")
-    btn_ssa = tk.Button(frame_botones, text="SSA", command=generar_ssa)
+    btn_ssa = tk.Button(frame_botones, text="Optimizar", command=generar_ssa)
     btn_semantico = tk.Button(frame_botones, text="Semántico", command=analizar_semantico_gui)
     for btn in [btn_lexico, btn_sintactico, btn_tabla, btn_semantico, btn_ssa]:
         btn.bind("<Enter>", on_enter)
@@ -224,7 +232,6 @@ def generar_ssa():
     limpiar_estructuras()
 
     codigo = editor.get("1.0", tk.END).strip()
-    codigo = editor.get("1.0", tk.END).strip()
 
     from parser import errores
     errores.clear()
@@ -241,14 +248,33 @@ def generar_ssa():
         salida.insert(tk.END, "\n".join(errores_sem))
         return
 
-    generar_tac(arbol)
-    convertir_a_ssa()
+    # TAC ORIGINAL
 
-    salida.insert(tk.END, "-----TAC-----\n")
+    generar_tac(arbol)
+
+    salida.insert(tk.END, "----- TAC ORIGINAL -----\n")
+
     for i in tac:
         salida.insert(tk.END, str(i) + "\n")
 
-    salida.insert(tk.END, "\n-----SSA-----\n")
+    # OPTIMIZACIONES
+
+    optimizar_tac()
+
+    salida.insert(tk.END, "\n----- TAC OPTIMIZADO -----\n")
+
+    for i in tac_optimizado:
+        salida.insert(tk.END, str(i) + "\n")
+
+    # SSA
+    
+    tac.clear()
+    tac.extend(tac_optimizado)
+
+    convertir_a_ssa()
+
+    salida.insert(tk.END, "\n----- SSA -----\n")
+
     for i in ssa:
         salida.insert(tk.END, str(i) + "\n")
 
