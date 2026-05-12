@@ -4,6 +4,7 @@ from parser import parser
 from symbol_table import symbol_table, clear_table
 from tkinter import messagebox
 from semantic import analizar_semantico
+from object_code import generar_codigo_objeto
 from ThDirection import (
     generar_tac,
     convertir_a_ssa,
@@ -127,6 +128,42 @@ def analizar_semantico_gui():
     else:
         salida.insert(tk.END, "Análisis semántico correcto\n")
 
+def generar_objeto_gui():
+    global salida, editor
+
+    salida.delete("1.0", tk.END)
+
+    codigo = editor.get("1.0", tk.END).strip()
+
+    from parser import errores
+    errores.clear()
+
+    # 🔥 generar árbol sintáctico
+    arbol = parser.parse(codigo, lexer=lexer)
+
+    # validar errores sintácticos
+    if errores:
+        salida.insert(tk.END, "\n".join(errores))
+        return
+
+    # validar semántica
+    errores_sem = analizar_semantico(arbol)
+
+    if errores_sem:
+        salida.insert(tk.END, "\n".join(errores_sem))
+        return
+
+    # generar TAC
+    limpiar_estructuras()
+    generar_tac(arbol)
+
+    # generar código objeto
+    codigo_obj = generar_codigo_objeto(tac)
+
+    salida.insert(tk.END, "----- CÓDIGO OBJETO -----\n\n")
+
+    for linea in codigo_obj:
+        salida.insert(tk.END, linea + "\n")
 
 def iniciar_gui():
     global editor, salida
@@ -184,6 +221,7 @@ def iniciar_gui():
     btn_salir = tk.Button(frame_botones, text="Salir", command=ventana.quit, bg="#D32F2F")
     btn_ssa = tk.Button(frame_botones, text="Optimizar", command=generar_ssa)
     btn_semantico = tk.Button(frame_botones, text="Semántico", command=analizar_semantico_gui)
+    btn_objeto = tk.Button(frame_botones, text="Objeto", command=generar_objeto_gui)
     for btn in [btn_lexico, btn_sintactico, btn_tabla, btn_semantico, btn_ssa]:
         btn.bind("<Enter>", on_enter)
         btn.bind("<Leave>", on_leave)
@@ -197,7 +235,7 @@ def iniciar_gui():
     btn_salir.bind("<Enter>", on_enter_red)
     btn_salir.bind("<Leave>", on_leave_red)
 
-    for i, btn in enumerate([btn_lexico, btn_sintactico, btn_tabla, btn_semantico, btn_ssa, btn_salir]):
+    for i, btn in enumerate([btn_lexico, btn_sintactico, btn_tabla, btn_semantico, btn_ssa, btn_objeto, btn_salir]):
         estilo_boton(btn)
         btn.grid(row=0, column=i, padx=10)
 
