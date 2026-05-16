@@ -4,7 +4,6 @@ from parser import parser
 from symbol_table import symbol_table, clear_table
 from tkinter import messagebox
 from semantic import analizar_semantico
-from object_code import generar_codigo_objeto
 from ThDirection import (
     generar_tac,
     convertir_a_ssa,
@@ -128,7 +127,10 @@ def analizar_semantico_gui():
     else:
         salida.insert(tk.END, "Análisis semántico correcto\n")
 
+from object_code import generar_asm, guardar_asm
+
 def generar_objeto_gui():
+
     global salida, editor
 
     salida.delete("1.0", tk.END)
@@ -138,32 +140,32 @@ def generar_objeto_gui():
     from parser import errores
     errores.clear()
 
-    # 🔥 generar árbol sintáctico
     arbol = parser.parse(codigo, lexer=lexer)
 
-    # validar errores sintácticos
     if errores:
         salida.insert(tk.END, "\n".join(errores))
         return
 
-    # validar semántica
     errores_sem = analizar_semantico(arbol)
 
     if errores_sem:
         salida.insert(tk.END, "\n".join(errores_sem))
         return
 
-    # generar TAC
     limpiar_estructuras()
+
     generar_tac(arbol)
 
-    # generar código objeto
-    codigo_obj = generar_codigo_objeto(tac)
+    asm = generar_asm(tac)
 
-    salida.insert(tk.END, "----- CÓDIGO OBJETO -----\n\n")
+    guardar_asm(asm)
 
-    for linea in codigo_obj:
+    salida.insert(tk.END, "===== CÓDIGO ENSAMBLADOR =====\n\n")
+
+    for linea in asm:
         salida.insert(tk.END, linea + "\n")
+
+    salida.insert(tk.END, "\n\nArchivo programa.asm generado correctamente")
 
 def iniciar_gui():
     global editor, salida
